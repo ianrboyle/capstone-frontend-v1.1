@@ -18,6 +18,8 @@
       <router-link to="/sectors">My Sectors</router-link>
       |
       <router-link to="/sectors/new">Add a Sector!</router-link>
+      |
+      <router-link to="/industries">My Industries!</router-link>
     </div>
     <router-view />
   </div>
