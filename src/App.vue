@@ -14,6 +14,10 @@
       <router-link to="/stocks">My Stocks</router-link>
       |
       <router-link to="/stocks/new">Add a Stock!</router-link>
+      |
+      <router-link to="/sectors">My Sectors</router-link>
+      |
+      <router-link to="/sectors/new">Add a Sector!</router-link>
     </div>
     <router-view />
   </div>

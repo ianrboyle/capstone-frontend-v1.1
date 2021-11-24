@@ -4,10 +4,13 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import Signup from "../views/Signup.vue";
-import StocksIndex from "../views/StocksIndex.vue";
-import StocksNew from "../views/StocksNew.vue";
-import StocksShow from "../views/StocksShow.vue";
-import StocksEdit from "../views/StocksEdit.vue";
+import StocksIndex from "../views/stocks/StocksIndex.vue";
+import StocksNew from "../views/stocks/StocksNew.vue";
+import StocksShow from "../views/stocks/StocksShow.vue";
+import StocksEdit from "../views/stocks/StocksEdit.vue";
+import SectorsIndex from "../views/SectorsIndex.vue";
+import SectorsNew from "../views/SectorsNew.vue";
+import SectorsShow from "../views/SectorsShow.vue";
 
 Vue.use(VueRouter);
 
@@ -44,6 +47,9 @@ const routes = [
   { path: "/stocks/new", name: "StocksNew", component: StocksNew },
   { path: "/stocks/:id", name: "StocksShow", component: StocksShow },
   { path: "/stocks/:id/edit", name: "StocksEdit", component: StocksEdit },
+  { path: "/sectors", name: "SectorsIndex", component: SectorsIndex },
+  { path: "/sectors/new", name: "SectorsNew", component: SectorsNew },
+  { path: "/sectors/:id", name: "SectorsShow", component: SectorsShow },
 ];
 
 const router = new VueRouter({
