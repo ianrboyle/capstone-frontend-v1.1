@@ -3,18 +3,34 @@
     <h1>{{ message }}</h1>
 
     <div v-for="stock in stocks" :key="stock.id">
-      {{ stock.symbol }}
-      |
       <router-link v-bind:to="`/stocks/${stock.id}`">
         <button type="button" class="btn btn-outline-primary">Info</button>
       </router-link>
-
+      |
+      <label>Symbol:</label>
+      {{ stock.symbol }}
+      |
+      <label>Current Price:</label>
       ${{ stock.current_price }}
+      |
+      <label>Quantity:</label>
       {{ stock.quantity }}
-      ${{ stock.cost_basis }} ${{ stock.current_total_value }} {{ stock.percent_of_account }}% ${{
-        stock.total_gain_loss
-      }}
+      |
+      <label>Cost Basis:</label>
+      ${{ stock.cost_basis }}
+      |
+      <label>Current Total Value:</label>
+      ${{ stock.current_total_value }}
+      |
+      <label>Percent of Account:</label>
+      {{ stock.percent_of_account }}% |
+      <label>Total Gain/Loss:</label>
+      ${{ stock.total_gain_loss }}
+      |
+      <label>Sector:</label>
       {{ stock.sector.sector }}
+      |
+      <label>Industry:</label>
       {{ stock.industry.industry }}
     </div>
   </div>

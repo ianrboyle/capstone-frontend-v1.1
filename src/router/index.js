@@ -5,6 +5,7 @@ import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import Signup from "../views/Signup.vue";
 import StocksIndex from "../views/StocksIndex.vue";
+import StocksNew from "../views/StocksNew.vue";
 
 Vue.use(VueRouter);
 
@@ -38,6 +39,7 @@ const routes = [
     component: Signup,
   },
   { path: "/stocks", name: "StocksIndex", component: StocksIndex },
+  { path: "/stocks/new", name: "StocksNew", component: StocksNew },
 ];
 
 const router = new VueRouter({
