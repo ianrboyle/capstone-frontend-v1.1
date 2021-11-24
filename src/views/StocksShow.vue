@@ -18,7 +18,7 @@
 
     <div>
       <router-link v-bind:to="`/stocks/${stock.id}/edit`">
-        <button type="button" class="btn btn-outline-primary">Edit</button>
+        <button type="button">Edit</button>
       </router-link>
       |
       <router-link v-bind:to="`/stocks`">

@@ -4,7 +4,7 @@
 
     <div v-for="stock in stocks" :key="stock.id">
       <router-link v-bind:to="`/stocks/${stock.id}`">
-        <button type="button" class="btn btn-outline-primary">Info</button>
+        <button>Info</button>
       </router-link>
       |
       <label>Symbol:</label>
