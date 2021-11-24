@@ -8,6 +8,10 @@
       <router-link to="/login">Login</router-link>
       |
       <router-link to="/logout">Logout</router-link>
+      |
+      <router-link to="/signup">Signup</router-link>
+      |
+      <router-link to="/stocks">My Stocks</router-link>
     </div>
     <router-view />
   </div>
