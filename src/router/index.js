@@ -1,19 +1,19 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
-import Logout from "../views/Logout.vue";
-import Signup from "../views/Signup.vue";
+import Login from "../views/signup/Login.vue";
+import Logout from "../views/signup/Logout.vue";
+import Signup from "../views/signup/Signup.vue";
 import StocksIndex from "../views/stocks/StocksIndex.vue";
 import StocksNew from "../views/stocks/StocksNew.vue";
 import StocksShow from "../views/stocks/StocksShow.vue";
 import StocksEdit from "../views/stocks/StocksEdit.vue";
-import SectorsIndex from "../views/SectorsIndex.vue";
-import SectorsNew from "../views/SectorsNew.vue";
-import SectorsShow from "../views/SectorsShow.vue";
-import IndustriesIndex from "../views/IndustriesIndex.vue";
-import IndustriesNew from "../views/IndustriesNew.vue";
-import IndustriesShow from "../views/IndustriesShow.vue";
+import SectorsIndex from "../views/sectors/SectorsIndex.vue";
+import SectorsNew from "../views/sectors/SectorsNew.vue";
+import SectorsShow from "../views/sectors/SectorsShow.vue";
+import IndustriesIndex from "../views/industries/IndustriesIndex.vue";
+import IndustriesNew from "../views/industries/IndustriesNew.vue";
+import IndustriesShow from "../views/industries/IndustriesShow.vue";
 
 Vue.use(VueRouter);
 

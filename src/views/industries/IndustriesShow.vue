@@ -42,7 +42,7 @@ export default {
     });
   },
   methods: {
-    destroyindustry: function () {
+    destroyIndustry: function () {
       axios.delete("http://localhost:3000/industries/" + this.$route.params.id).then((response) => {
         console.log(response.data);
         this.$router.push("/industries");
