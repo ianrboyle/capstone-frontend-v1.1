@@ -12,6 +12,7 @@ import SectorsIndex from "../views/SectorsIndex.vue";
 import SectorsNew from "../views/SectorsNew.vue";
 import SectorsShow from "../views/SectorsShow.vue";
 import IndustriesIndex from "../views/IndustriesIndex.vue";
+import IndustriesNew from "../views/IndustriesNew.vue";
 import IndustriesShow from "../views/IndustriesShow.vue";
 
 Vue.use(VueRouter);
@@ -53,6 +54,7 @@ const routes = [
   { path: "/sectors/new", name: "SectorsNew", component: SectorsNew },
   { path: "/sectors/:id", name: "SectorsShow", component: SectorsShow },
   { path: "/industries", name: "IndustriesIndex", component: IndustriesIndex },
+  { path: "/industries/new", name: "IndustriesNew", component: IndustriesNew },
   { path: "/industries/:id", name: "IndustriesShow", component: IndustriesShow },
 ];
 
