@@ -9,30 +9,30 @@
         <label>Symbol:</label>
         <input type="text" v-model="newStockParams.symbol" />
       </div>
-      <div>
+      <!-- <div>
         <label>Company Name:</label>
         <input type="text" v-model="newStockParams.company_name" />
-      </div>
+      </div> -->
       <div>
         <label>Cost Basis:</label>
         <input type="text" v-model="newStockParams.cost_basis" />
       </div>
-      <div>
+      <!-- <div>
         <label>Current Price:</label>
         <input type="text" v-model="newStockParams.current_price" />
-      </div>
+      </div> -->
       <div>
         <label>Quantity:</label>
         <input type="text" v-model="newStockParams.quantity" />
       </div>
-      <div>
+      <!-- <div>
         <label>Sector ID:</label>
         <input type="text" v-model="newStockParams.sector_id" />
-      </div>
-      <div>
+      </div> -->
+      <!-- <div>
         <label>Industry ID:</label>
         <input type="text" v-model="newStockParams.industry_id" />
-      </div>
+      </div> -->
       <input type="submit" value="Submit" />
     </form>
   </div>
@@ -52,7 +52,7 @@ export default {
     createStock: function () {
       console.log("Creating a new stock");
       axios
-        .post("http://localhost:3000/stocks", this.newStockParams)
+        .post("http://localhost:3000/stocks/" + this.newStockParams.symbol, this.newStockParams)
         .then(() => {
           this.$router.push("/stocks");
         })
