@@ -1,7 +1,7 @@
 <template>
   <div class="stocks-index">
     <h1>{{ message }}</h1>
-
+    <button v-on:click="updateStockPrice()">Update Prices</button>
     <div v-for="stock in stocks" :key="stock.id">
       <router-link v-bind:to="`/stocks/${stock.id}`">
         <button>Info</button>
@@ -61,6 +61,13 @@ export default {
       axios.get("http://localhost:3000/stocks").then((response) => {
         this.stocks = response.data;
         console.log("Success! Stocks data:", response.data);
+      });
+    },
+    updateStockPrice: function () {
+      this.stocks.forEach((stock) => {
+        axios.patch("http://localhost:3000/stocks/" + stock.symbol).then((response) => {
+          console.log("Success! Stocks price updated:", response.data, stock);
+        });
       });
     },
   },
