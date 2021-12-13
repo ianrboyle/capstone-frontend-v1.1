@@ -38,6 +38,7 @@ export default {
     return {
       industry: {},
       sectors: [],
+      removed: [],
     };
   },
   created: function () {
@@ -45,6 +46,7 @@ export default {
       this.industry = response.data;
       console.log("Success", response.data);
       this.getSectors();
+      this.removeSectorDuplicates();
     });
   },
   methods: {
@@ -60,7 +62,15 @@ export default {
         axios.get("http://localhost:3000/sectors/" + sector.id).then((response) => {
           this.sectors.push(response.data);
         });
-        console.log("Sectors", this.sectors);
+      });
+      console.log("Sectors:", this.sectors);
+    },
+    removeSectorDuplicates: function () {
+      this.sectors.forEach((sect) => {
+        console.log("Removed", typeof sect);
+        // if (this.removed.includes(sect.sector)) {
+        //   this.removed.push(sect);
+        // }
       });
     },
   },
