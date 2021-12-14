@@ -1,7 +1,13 @@
 <template>
   <div class="sectors-show">
-    Sector: {{ sector.sector }} | Percent of Account: {{ sector.sector_percent_of_account }}% | Stocks:
-    <div v-for="stock in stocks" :key="stock.id">{{ stock.symbol }}</div>
+    <h3>Sector: {{ sector.sector }} | Percent of Account: {{ sector.sector_percent_of_account }}%</h3>
+    <!-- <div v-for="stock in stocks" :key="stock.id">{{ stock.symbol }} | {{ stock.industry.industry }}</div> -->
+    <div v-for="industry in industries" :key="industry.id">
+      {{ industry.industry }} | {{ industry.industry_percent }} |
+      <router-link v-bind:to="`/industries/${industry.industry_id}`">
+        <button type="button">View</button>
+      </router-link>
+    </div>
 
     <div>
       <router-link v-bind:to="`/sectors/${sector.id}/edit`">
@@ -31,14 +37,17 @@ export default {
     return {
       sector: {},
       stocks: [],
+      industries: [],
     };
   },
   created: function () {
     axios.get("http://localhost:3000/sectors/" + this.$route.params.id).then((response) => {
       this.sector = response.data;
       this.stocks = response.data.stocks;
+      this.industries = response.data.industry_percent_of_sector;
       console.log("Success", response.data, this.stocks);
     });
+    // could i get industries via axios?
   },
   methods: {
     destroySector: function () {
