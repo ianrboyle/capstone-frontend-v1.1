@@ -5,7 +5,7 @@
     <div v-for="industry in industries" :key="industry.id">
       {{ industry.industry }} | {{ industry.industry_percent }} |
       <router-link v-bind:to="`/industries/${industry.industry_id}`">
-        <button type="button">View</button>
+        <button type="button">View Industry Info</button>
       </router-link>
     </div>
 
