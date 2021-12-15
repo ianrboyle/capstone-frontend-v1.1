@@ -1,8 +1,57 @@
 <template>
   <div class="sectors-show">
-    <h3>Sector: {{ sector.sector }} | Percent of Account: {{ sector.sector_percent_of_account }}%</h3>
-    <!-- <div v-for="stock in stocks" :key="stock.id">{{ stock.symbol }} | {{ stock.industry.industry }}</div> -->
-    <div v-for="industry in industries" :key="industry.id">
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>{{ sector.sector }}</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/sectors">Sectors</a></li>
+            <li class="breadcrumb-item active">{{ sector.sector }}</li>
+          </ol>
+        </nav>
+      </div>
+      <!-- End Page Title -->
+
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Sector Info</h5>
+                <p>
+                  <router-link v-bind:to="`/sectors/${sector.id}/edit`">
+                    <button type="button" class="btn btn-outline-success">Edit Sector</button>
+                  </router-link>
+                </p>
+                <p><button class="btn btn-outline-danger" v-on:click="destroySector()">Delete</button></p>
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Industry</th>
+                      <th scope="col">Industry % of Sector</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="industry in industries" :key="industry.id">
+                      <td scope="row">
+                        <router-link v-bind:to="`/industries/${industry.industry_id}`">
+                          <button type="button" class="btn btn-outline-primary">{{ industry.industry }}</button>
+                        </router-link>
+                      </td>
+                      <td>{{ industry.industry_percent }}%</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- <div v-for="industry in industries" :key="industry.id">
       {{ industry.industry }} | {{ industry.industry_percent }} |
       <router-link v-bind:to="`/industries/${industry.industry_id}`">
         <button type="button">View Industry Info</button>
@@ -19,17 +68,11 @@
       </router-link>
       |
       <button class="btn btn-outline-danger" v-on:click="destroySector()">Delete</button>
-    </div>
+    </div> -->
   </div>
 </template>
-<style>
-.card {
-  margin: 0 auto;
-  float: none;
-  margin-bottom: 10px;
-  color: black;
-}
-</style>
+<style></style>
+
 <script>
 import axios from "axios";
 export default {

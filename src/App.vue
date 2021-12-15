@@ -378,20 +378,26 @@
           <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="/stocks">
               <i class="bi bi-layout-text-window-reverse"></i>
-              <span>Stocks</span>
+              <span>Portfolio</span>
               <i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
               <li>
-                <a href="tables-general.html">
-                  <i class="bi bi-circle"></i>
-                  <span>General Tables</span>
-                </a>
-              </li>
-              <li>
                 <a href="/stocks">
                   <i class="bi bi-circle"></i>
                   <span>Positions</span>
+                </a>
+              </li>
+              <li>
+                <a href="/sectors">
+                  <i class="bi bi-circle"></i>
+                  <span>Sectors</span>
+                </a>
+              </li>
+              <li>
+                <a href="/industries">
+                  <i class="bi bi-circle"></i>
+                  <span>Industries</span>
                 </a>
               </li>
             </ul>

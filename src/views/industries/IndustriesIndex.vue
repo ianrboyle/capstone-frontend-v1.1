@@ -1,29 +1,56 @@
 <template>
   <div class="industries-index">
-    <h1>{{ message }}</h1>
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>My Industries</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/stocks">Positions</a></li>
+            <li class="breadcrumb-item active">Industries</li>
+          </ol>
+        </nav>
+      </div>
+      <!-- End Page Title -->
 
-    <div v-for="industry in industries" :key="industry.id">
-      <router-link v-bind:to="`/industries/${industry.id}`">
-        <button>Info</button>
-      </router-link>
-      |
-      <label>Industry:</label>
-      {{ industry.industry }}
-      |
-      <label>Percent of Account:</label>
-      {{ industry.industry_percent_of_account }}%
-    </div>
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Industry Info</h5>
+                <p></p>
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Industry</th>
+                      <th scope="col">Industry % of Account</th>
+                      <th scope="col">Current Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="industry in industries" :key="industry.id">
+                      <td scope="row">
+                        <router-link v-bind:to="`/industries/${industry.id}`">
+                          <button type="button" class="btn btn-outline-primary">{{ industry.industry }}</button>
+                        </router-link>
+                      </td>
+                      <td>{{ industry.industry_percent_of_account }}%</td>
+                      <td>${{ industry.industry_value }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
 </template>
-<style>
-.col-sm {
-  background-color: lightgreen;
-  border-style: solid;
-}
-.headers {
-  font-weight: bold;
-}
-</style>
+<style></style>
 <script>
 import axios from "axios";
 export default {
