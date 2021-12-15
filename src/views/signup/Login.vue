@@ -94,7 +94,7 @@
       </div>
     </main>
     <!-- End #main -->
-    <form v-on:submit.prevent="submit()">
+    <!-- <form v-on:submit.prevent="submit()">
       <h1>Login</h1>
       <ul>
         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
@@ -108,7 +108,7 @@
         <input type="password" v-model="newSessionParams.password" />
       </div>
       <input type="submit" value="Submit" />
-    </form>
+    </form> -->
   </div>
 </template>
 
