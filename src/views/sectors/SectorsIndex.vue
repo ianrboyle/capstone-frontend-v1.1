@@ -48,12 +48,18 @@
         </div>
       </section>
     </main>
+    <!-- <h3>Pie Chart Example in Vue</h3>
+    <pie-chart></pie-chart> -->
   </div>
 </template>
 <style></style>
 <script>
 import axios from "axios";
+// import PieChart from ".../components/PieChart.vue";
 export default {
+  // components: {
+  //   PieChart,
+  // },
   data: function () {
     return {
       message: "Your Sectors:",

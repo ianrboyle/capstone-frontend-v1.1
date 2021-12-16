@@ -56,22 +56,6 @@
           </div>
         </div>
       </section>
-      <section class="section">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Pie Chart</h5>
-
-                <!-- Pie Chart -->
-                <canvas id="pieChart" style="max-height: 400px"></canvas>
-
-                <!-- End Pie CHart -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   </div>
 </template>
@@ -79,7 +63,7 @@
 
 <script defer>
 import axios from "axios";
-import Chart from "chartjs";
+
 export default {
   data: function () {
     return {
@@ -97,25 +81,7 @@ export default {
       this.accountValue = this.stocks[0].current_account_value;
       console.log("Success", response.data, this.accountValue);
     });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      new Chart(document.querySelector("#pieChart"), {
-        type: "pie",
-        data: {
-          labels: ["Red", "Blue", "Yellow"],
-          datasets: [
-            {
-              label: "My First Dataset",
-              data: [300, 50, 100],
-              backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
-              hoverOffset: 4,
-            },
-          ],
-        },
-      });
-    });
   },
-
   methods: {
     destroySector: function () {
       axios.delete("http://localhost:3000/sectors/" + this.$route.params.id).then((response) => {
