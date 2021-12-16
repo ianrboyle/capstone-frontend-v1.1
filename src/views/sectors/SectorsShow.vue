@@ -19,18 +19,15 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Sector Info</h5>
-                <p>
-                  <router-link v-bind:to="`/sectors/${sector.id}/edit`">
-                    <button type="button" class="btn btn-outline-success">Edit Sector</button>
-                  </router-link>
-                </p>
-                <p><button class="btn btn-outline-danger" v-on:click="destroySector()">Delete</button></p>
+
                 <!-- Table with stripped rows -->
-                <table class="table datatable">
+                <table class="table datatable table-hover">
                   <thead>
                     <tr>
                       <th scope="col">Industry</th>
-                      <th scope="col">Industry % of Sector</th>
+                      <th scope="col">% of {{ sector.sector }}</th>
+                      <th scope="col">Industry Value</th>
+                      <th scope="col">% of Account</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -41,46 +38,55 @@
                         </router-link>
                       </td>
                       <td>{{ industry.industry_percent }}%</td>
+                      <td>${{ ((industry.industry_percent * sector.sector_value) / 100).toFixed(2) }}</td>
+
+                      <td>{{ ((industry.industry_percent * sector.sector_value) / accountValue).toFixed(2) }}%</td>
                     </tr>
                   </tbody>
+                  <!-- <p>
+                  <router-link v-bind:to="`/sectors/${sector.id}/edit`">
+                    <button type="button" class="btn btn-outline-success">Edit Sector</button>
+                  </router-link>
+                </p> -->
                 </table>
+                <p><button class="btn btn-outline-danger" v-on:click="destroySector()">Delete Sector</button></p>
                 <!-- End Table with stripped rows -->
               </div>
             </div>
           </div>
         </div>
       </section>
-    </main>
-    <!-- <div v-for="industry in industries" :key="industry.id">
-      {{ industry.industry }} | {{ industry.industry_percent }} |
-      <router-link v-bind:to="`/industries/${industry.industry_id}`">
-        <button type="button">View Industry Info</button>
-      </router-link>
-    </div>
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Pie Chart</h5>
 
-    <div>
-      <router-link v-bind:to="`/sectors/${sector.id}/edit`">
-        <button type="button">Edit</button>
-      </router-link>
-      |
-      <router-link v-bind:to="`/sectors`">
-        <button type="button" class="btn btn-outline-success">My sectors</button>
-      </router-link>
-      |
-      <button class="btn btn-outline-danger" v-on:click="destroySector()">Delete</button>
-    </div> -->
+                <!-- Pie Chart -->
+                <canvas id="pieChart" style="max-height: 400px"></canvas>
+
+                <!-- End Pie CHart -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
 </template>
 <style></style>
 
-<script>
+<script defer>
 import axios from "axios";
+import Chart from "chartjs";
 export default {
   data: function () {
     return {
       sector: {},
       stocks: [],
       industries: [],
+      accountValue: 0,
     };
   },
   created: function () {
@@ -88,10 +94,28 @@ export default {
       this.sector = response.data;
       this.stocks = response.data.stocks;
       this.industries = response.data.industry_percent_of_sector;
-      console.log("Success", response.data, this.stocks);
+      this.accountValue = this.stocks[0].current_account_value;
+      console.log("Success", response.data, this.accountValue);
     });
-    // could i get industries via axios?
+
+    document.addEventListener("DOMContentLoaded", () => {
+      new Chart(document.querySelector("#pieChart"), {
+        type: "pie",
+        data: {
+          labels: ["Red", "Blue", "Yellow"],
+          datasets: [
+            {
+              label: "My First Dataset",
+              data: [300, 50, 100],
+              backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
+              hoverOffset: 4,
+            },
+          ],
+        },
+      });
+    });
   },
+
   methods: {
     destroySector: function () {
       axios.delete("http://localhost:3000/sectors/" + this.$route.params.id).then((response) => {

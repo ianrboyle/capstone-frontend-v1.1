@@ -19,7 +19,11 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Positions</h5>
-
+                <p>
+                  <router-link v-bind:to="`/stocks/new`">
+                    <button type="button" class="btn btn-outline-primary">Add a Position!</button>
+                  </router-link>
+                </p>
                 <!-- Table with stripped rows -->
                 <table class="table datatable">
                   <thead>
@@ -34,6 +38,7 @@
                       <th scope="col">% of Account</th>
                       <th scope="col">Sector</th>
                       <th scope="col">Industry</th>
+                      <th scope="col">Edit</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -46,17 +51,22 @@
                       <td>${{ stock.total_gain_loss }}</td>
                       <td>{{ stock.total_gain_loss_percent }}%</td>
                       <td>{{ stock.percent_of_account }}%</td>
-                      <td>{{ stock.sector.sector }}</td>
-                      <td>{{ stock.industry.industry }}</td>
+                      <td>
+                        <router-link v-bind:to="`/sectors/${stock.sector.id}`">
+                          <button type="button" class="btn btn-outline-primary">{{ stock.sector.sector }}</button>
+                        </router-link>
+                      </td>
+                      <td>
+                        <router-link v-bind:to="`/industries/${stock.industry.id}`">
+                          <button type="button" class="btn btn-outline-primary">{{ stock.industry.industry }}</button>
+                        </router-link>
+                      </td>
+                      <td>
+                        <router-link v-bind:to="`/stocks/${stock.id}/edit`">
+                          <button type="button" class="btn btn-outline-primary">Edit</button>
+                        </router-link>
+                      </td>
                     </tr>
-
-                    <!-- <tr>
-                      <th scope="row">5</th>
-                      <td>Raheem Lehner</td>
-                      <td>Dynamic Division Officer</td>
-                      <td>47</td>
-                      <td>2011-04-19</td>
-                    </tr> -->
                   </tbody>
                 </table>
                 <!-- End Table with stripped rows -->

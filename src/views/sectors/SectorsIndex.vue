@@ -26,6 +26,7 @@
                     <tr>
                       <th scope="col">Sector</th>
                       <th scope="col">% of Account</th>
+                      <th scope="col">Current Value</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -36,6 +37,7 @@
                         </router-link>
                       </td>
                       <td>{{ sector.sector_percent_of_account }}%</td>
+                      <td>${{ sector.sector_value }}</td>
                     </tr>
                   </tbody>
                 </table>

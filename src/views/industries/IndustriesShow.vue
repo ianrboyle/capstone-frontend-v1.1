@@ -6,6 +6,7 @@
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/stocks">Positions</a></li>
             <li class="breadcrumb-item"><a href="/industries">Industries</a></li>
             <li class="breadcrumb-item active">{{ industry.industry }}</li>
           </ol>
@@ -19,7 +20,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Industry Info</h5>
-
+                <p>Current Allocation to {{ industry.industry }}: ${{ industry.industry_value }}</p>
                 <!-- Table with stripped rows -->
                 <table class="table datatable">
                   <thead>
@@ -32,23 +33,21 @@
                   <tbody>
                     <tr v-for="stock in stocks" :key="stock.id">
                       <td scope="row">
-                        <router-link v-bind:to="`/stocks/${stock.id}`">
-                          <button type="button" class="btn btn-outline-primary">{{ stock.symbol }}</button>
-                        </router-link>
+                        {{ stock.symbol }}
                       </td>
                       <td>
                         {{ (((stock.quantity * stock.current_price) / industry.industry_value) * 100).toFixed(2) }}%
                       </td>
-                      <td>${{ industry.industry_value }}</td>
+                      <td>${{ stock.current_total_value }}</td>
                     </tr>
                   </tbody>
                 </table>
                 <!-- End Table with stripped rows -->
-                <p>
+                <!-- <p>
                   <router-link v-bind:to="`/industries/${industry.id}/edit`">
                     <button type="button" class="btn btn-outline-success">Edit Sector</button>
                   </router-link>
-                </p>
+                </p> -->
                 <p><button class="btn btn-outline-danger" v-on:click="destroyIndustry()">Delete</button></p>
               </div>
             </div>

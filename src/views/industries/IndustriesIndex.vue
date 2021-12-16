@@ -7,6 +7,7 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/stocks">Positions</a></li>
+            <li class="breadcrumb-item"><a href="/sectors">Sectors</a></li>
             <li class="breadcrumb-item active">Industries</li>
           </ol>
         </nav>
