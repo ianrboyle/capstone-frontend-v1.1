@@ -46,20 +46,34 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Industry % of Sector</h5>
+
+              <!-- Pie Chart -->
+              <div id="pieChart" style="max-height: 500px">
+                <pie-chart></pie-chart>
+              </div>
+
+              <!-- End Pie CHart -->
+            </div>
+          </div>
+        </div>
       </section>
     </main>
-    <!-- <h3>Pie Chart Example in Vue</h3>
-    <pie-chart></pie-chart> -->
   </div>
 </template>
 <style></style>
 <script>
 import axios from "axios";
 // import PieChart from ".../components/PieChart.vue";
+import PieChart from "@/components/SectorsIndexPie";
 export default {
-  // components: {
-  //   PieChart,
-  // },
+  components: {
+    PieChart,
+  },
+
   data: function () {
     return {
       message: "Your Sectors:",
