@@ -25,9 +25,11 @@
                 <table class="table datatable">
                   <thead>
                     <tr>
-                      <th scope="col">Industry</th>
-                      <th scope="col">Stock % of Industry</th>
+                      <th scope="col">Symbol</th>
                       <th scope="col">Current Value</th>
+                      <th scope="col">% of Industry</th>
+                      <th scope="col">% of Sector</th>
+                      <th scope="col">% of Account</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -35,10 +37,10 @@
                       <td scope="row">
                         {{ stock.symbol }}
                       </td>
-                      <td>
-                        {{ (((stock.quantity * stock.current_price) / industry.industry_value) * 100).toFixed(2) }}%
-                      </td>
                       <td>${{ stock.current_total_value }}</td>
+                      <td>{{ stock.stock_percent_of_industry }}%</td>
+                      <td>{{ stock.stock_percent_of_sector }}%</td>
+                      <td>{{ stock.percent_of_account }}%</td>
                     </tr>
                   </tbody>
                 </table>
@@ -50,6 +52,19 @@
                 </p> -->
                 <p><button class="btn btn-outline-danger" v-on:click="destroyIndustry()">Delete</button></p>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Stock % of {{ industry.industry }}</h5>
+
+              <!-- Pie Chart -->
+              <div id="pieChart" style="max-height: 500px">
+                <pie-chart></pie-chart>
+              </div>
+              <!-- End Pie CHart -->
             </div>
           </div>
         </div>
@@ -67,7 +82,11 @@
 </style>
 <script>
 import axios from "axios";
+import PieChart from "@/components/IndustriesShowPie";
 export default {
+  components: {
+    PieChart,
+  },
   data: function () {
     return {
       industry: {},

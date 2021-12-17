@@ -47,6 +47,19 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Industry % of Account</h5>
+
+              <!-- Pie Chart -->
+              <div id="pieChart" style="max-height: 500px">
+                <pie-chart></pie-chart>
+              </div>
+              <!-- End Pie CHart -->
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   </div>
@@ -54,7 +67,12 @@
 <style></style>
 <script>
 import axios from "axios";
+import PieChart from "@/components/IndustriesIndexPie";
+
 export default {
+  components: {
+    PieChart,
+  },
   data: function () {
     return {
       message: "Your Industries:",

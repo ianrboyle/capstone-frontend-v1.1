@@ -49,23 +49,74 @@
                   </router-link>
                 </p> -->
                 </table>
-                <p><button class="btn btn-outline-danger" v-on:click="destroySector()">Delete Sector</button></p>
                 <!-- End Table with stripped rows -->
+                <div class="col-lg-6">
+                  <!-- Basic Modal -->
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#basicModal"
+                  >
+                    Delete Sector
+                  </button>
+                  <div class="modal fade" id="basicModal" tabindex="-1">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Delete Sector</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Are you sure you wish to delete this sector?</div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <router-link v-bind:to="`/sectors`">
+                            <button
+                              type="button"
+                              v-on:click="destroySector()"
+                              class="btn btn-danger"
+                              data-bs-dismiss="modal"
+                            >
+                              Delete
+                            </button>
+                          </router-link>
+                        </div>
+                      </div>
+                      <!-- End Basic Modal-->
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Industry % of Sector</h5>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Industry % of Sector</h5>
 
-              <!-- Pie Chart -->
-              <div id="pieChart" style="max-height: 500px">
-                <pie-chart></pie-chart>
+                <!-- Pie Chart -->
+                <div id="pieChart" style="max-height: 500px">
+                  <pie-chart></pie-chart>
+                </div>
+
+                <!-- End Pie CHart -->
               </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Stock % of Sector</h5>
 
-              <!-- End Pie CHart -->
+                <!-- Pie Chart -->
+                <div id="pieChart" style="max-height: 500px">
+                  <StockPercentOfSectorPie />
+                </div>
+
+                <!-- End Pie CHart -->
+              </div>
             </div>
           </div>
         </div>
@@ -78,9 +129,11 @@
 <script defer>
 import axios from "axios";
 import PieChart from "@/components/SectorsShowPie";
+import StockPercentOfSectorPie from "@/components/StockPercentOfSectorPie";
 export default {
   components: {
     PieChart,
+    StockPercentOfSectorPie,
   },
   data: function () {
     return {

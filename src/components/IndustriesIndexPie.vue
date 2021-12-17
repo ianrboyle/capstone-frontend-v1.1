@@ -5,7 +5,6 @@ export default {
   extends: Pie,
   data() {
     return {
-      sector: {},
       industries: [],
       chartData: {
         labels: [],
@@ -55,14 +54,13 @@ export default {
   },
   async mounted() {
     await this.renderChart(this.chartData, this.options);
-    await axios.get("http://localhost:3000/sectors/" + this.$route.params.id).then((response) => {
-      this.industries = response.data.industry_percent_of_sector;
-      this.sector = response.data;
+    await axios.get("http://localhost:3000/industries").then((response) => {
+      this.industries = response.data;
       this.industries.forEach((industry) => {
         this.chartData.labels.push(industry.industry);
-        this.chartData.datasets[0].data.push(industry.industry_percent);
+        this.chartData.datasets[0].data.push(industry.industry_percent_of_account);
       });
-      console.log("Inds", typeof this.industries[0].industry_percent);
+      console.log("industry from pie", this.industries);
     });
   },
 };

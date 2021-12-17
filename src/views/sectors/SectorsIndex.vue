@@ -49,7 +49,7 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Industry % of Sector</h5>
+              <h5 class="card-title">Sector % of Account</h5>
 
               <!-- Pie Chart -->
               <div id="pieChart" style="max-height: 500px">
