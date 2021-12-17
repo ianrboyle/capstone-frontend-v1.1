@@ -55,6 +55,20 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Sectors Pie</h5>
+
+              <!-- Pie Chart -->
+              <div id="pieChart" style="max-height: 500px">
+                <pie-chart></pie-chart>
+              </div>
+
+              <!-- End Pie CHart -->
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   </div>
@@ -63,8 +77,11 @@
 
 <script defer>
 import axios from "axios";
-
+import PieChart from "@/components/PieChart";
 export default {
+  components: {
+    PieChart,
+  },
   data: function () {
     return {
       sector: {},

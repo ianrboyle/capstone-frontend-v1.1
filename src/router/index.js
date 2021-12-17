@@ -46,6 +46,11 @@ const routes = [
     name: "Signup",
     component: Signup,
   },
+  // {
+  //   path: "/pie",
+  //   name: "Pie",
+  //   component: () => import("../views/stocks/Pie.vue"),
+  // },
   { path: "/stocks", name: "StocksIndex", component: StocksIndex },
   { path: "/stocks/new", name: "StocksNew", component: StocksNew },
   { path: "/stocks/:id", name: "StocksShow", component: StocksShow },
