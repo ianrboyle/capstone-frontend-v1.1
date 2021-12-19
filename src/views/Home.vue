@@ -24,7 +24,7 @@
 
                   <div class="card-body">
                     <h5 class="card-title">
-                      Sales
+                      Current Account Value
                       <span>| Today</span>
                     </h5>
 
@@ -61,7 +61,7 @@
 
                   <div class="card-body">
                     <h5 class="card-title">
-                      Revenue
+                      % Gain over the last day
                       <span>| This Month</span>
                     </h5>
 

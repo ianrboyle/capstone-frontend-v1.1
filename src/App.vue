@@ -32,14 +32,14 @@
             </li>
             <!-- End Search Icon-->
 
-            <li class="nav-item dropdown">
-              <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <!-- <li class="nav-item dropdown"> -->
+            <!-- <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                 <i class="bi bi-bell"></i>
                 <span class="badge bg-primary badge-number">4</span>
-              </a>
-              <!-- End Notification Icon -->
+              </a> -->
+            <!-- End Notification Icon -->
 
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <!-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                 <li class="dropdown-header">
                   You have 4 new notifications
                   <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
@@ -102,18 +102,18 @@
                 <li class="dropdown-footer">
                   <a href="#">Show all notifications</a>
                 </li>
-              </ul>
-              <!-- End Notification Dropdown Items -->
-            </li>
+              </ul> -->
+            <!-- End Notification Dropdown Items -->
+            <!-- </li> -->
             <!-- End Notification Nav -->
-
+            <!-- 
             <li class="nav-item dropdown">
               <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                 <i class="bi bi-chat-left-text"></i>
                 <span class="badge bg-success badge-number">3</span>
-              </a>
-              <!-- End Messages Icon -->
-
+              </a> -->
+            <!-- End Messages Icon -->
+            <!-- 
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                 <li class="dropdown-header">
                   You have 3 new messages
@@ -168,29 +168,29 @@
                 <li class="dropdown-footer">
                   <a href="#">Show all messages</a>
                 </li>
-              </ul>
-              <!-- End Messages Dropdown Items -->
-            </li>
+              </ul> -->
+            <!-- End Messages Dropdown Items -->
+            <!-- </li> -->
             <!-- End Messages Nav -->
 
-            <li class="nav-item dropdown pe-3">
+            <li v-if="isLoggedIn()" class="nav-item dropdown pe-3">
               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" />
-                <span class="d-none d-md-block dropdown-toggle ps-2">Ian Boyle</span>
+                <!-- <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" /> -->
+                <span class="d-none d-md-block dropdown-toggle ps-2">Welcome</span>
               </a>
               <!-- End Profile Iamge Icon -->
 
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                <li class="dropdown-header">
-                  <h6>Ian Boyle</h6>
+                <!-- <li class="dropdown-header">
+                  <h6 :key="stocks[0].user.id">{{ currentUser }}</h6>
                   <span>Software Engineer</span>
                 </li>
                 <li>
                   <hr class="dropdown-divider" />
-                </li>
+                </li> -->
 
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                  <a class="dropdown-item d-flex align-items-center" href="/">
                     <i class="bi bi-person"></i>
                     <span>My Profile</span>
                   </a>
@@ -198,29 +198,29 @@
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
-
+                <!-- 
                 <li>
                   <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                     <i class="bi bi-gear"></i>
                     <span>Account Settings</span>
                   </a>
-                </li>
+                </li> -->
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
 
-                <li>
-                  <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <!-- <li>
+                  <a class="dropdown-item d-flex align-items-center" href="/faq">
                     <i class="bi bi-question-circle"></i>
                     <span>Need Help?</span>
                   </a>
-                </li>
+                </li> -->
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
 
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
+                  <a v-if="isLoggedIn()" class="dropdown-item d-flex align-items-center" href="/logout">
                     <i class="bi bi-box-arrow-right"></i>
                     <span>Sign Out</span>
                   </a>
@@ -228,6 +228,22 @@
               </ul>
               <!-- End Profile Dropdown Items -->
             </li>
+            <li v-if="!isLoggedIn()" class="nav-item dropdown pe-3">
+              <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/signup">
+                <i class="bi bi-card-list"></i>
+                <span>Register</span>
+              </a>
+            </li>
+            <!-- End Register Page Nav -->
+
+            <li v-if="!isLoggedIn()" class="nav-item dropdown pe-3">
+              <router-link class="nav-link nav-profile d-flex align-items-center pe-0" to="/login">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Login</span>
+              </router-link>
+            </li>
+            <!-- End Login Page Nav -->
+
             <!-- End Profile Nav -->
           </ul>
         </nav>
@@ -375,7 +391,7 @@
           </li> -->
           <!-- End Forms Nav -->
 
-          <li class="nav-item">
+          <li v-if="isLoggedIn()" class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="/stocks">
               <i class="bi bi-layout-text-window-reverse"></i>
               <span>Portfolio</span>
@@ -464,8 +480,8 @@
 
           <li class="nav-heading">Pages</li>
 
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
+          <li v-if="isLoggedIn()" class="nav-item">
+            <a class="nav-link collapsed" href="/stocks">
               <i class="bi bi-person"></i>
               <span>Profile</span>
             </a>
@@ -488,7 +504,7 @@
           </li> -->
           <!-- End Contact Page Nav -->
 
-          <li class="nav-item">
+          <li v-if="!isLoggedIn()" class="nav-item">
             <a class="nav-link collapsed" href="/signup">
               <i class="bi bi-card-list"></i>
               <span>Register</span>
@@ -496,7 +512,7 @@
           </li>
           <!-- End Register Page Nav -->
 
-          <li class="nav-item">
+          <li v-if="!isLoggedIn()" class="nav-item">
             <router-link class="nav-link collapsed" to="/login">
               <i class="bi bi-box-arrow-in-right"></i>
               <span>Login</span>
@@ -504,6 +520,12 @@
           </li>
           <!-- End Login Page Nav -->
 
+          <li v-if="isLoggedIn()" class="nav-item">
+            <a class="nav-link collapsed" href="/logout">
+              <i class="bi bi-box-arrow-in-left"></i>
+              <span>Logout</span>
+            </a>
+          </li>
           <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="pages-error-404.html">
               <i class="bi bi-dash-circle"></i>
@@ -568,3 +590,28 @@
     <!-- End Footer -->
   </div>
 </template>
+<script>
+// import axios from "axios";
+export default {
+  data: function () {
+    return {
+      // stocks: [],
+      // currentUser: "",
+    };
+  },
+  created: function () {
+    this.getUserInfo();
+  },
+  methods: {
+    isLoggedIn: function () {
+      return localStorage.getItem("jwt");
+    },
+    // getUserInfo: function () {
+    //   axios.get("http://localhost:3000/stocks").then((response) => {
+    //     this.stocks = response.data;
+    //     this.currentUser = this.stocks[0].user.name;
+    //   });
+    // },
+  },
+};
+</script>
