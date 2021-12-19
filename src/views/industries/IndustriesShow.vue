@@ -20,7 +20,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Industry Info</h5>
-                <p>Current Allocation to {{ industry.industry }}: ${{ industry.industry_value }}</p>
+                <p :key="industry.id">Current Allocation to {{ industry.industry }}: ${{ industry.industry_value }}</p>
                 <!-- Table with stripped rows -->
                 <table class="table datatable">
                   <thead>

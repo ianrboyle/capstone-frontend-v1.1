@@ -81,15 +81,19 @@ export default {
     };
   },
   created: function () {
-    this.indexSectors();
+    axios.get("http://localhost:3000/sectors").then((response) => {
+      this.sectors = response.data;
+      console.log("Success! Sectors data:", response.data);
+    });
+    // this.indexSectors();
   },
-  methods: {
-    indexSectors: function () {
-      axios.get("http://localhost:3000/sectors").then((response) => {
-        this.sectors = response.data;
-        console.log("Success! Sectors data:", response.data);
-      });
-    },
-  },
+  // methods: {
+  //   indexSectors: function () {
+  //     axios.get("http://localhost:3000/sectors").then((response) => {
+  //       this.sectors = response.data;
+  //       console.log("Success! Sectors data:", response.data);
+  //     });
+  //   },
+  // },
 };
 </script>

@@ -5,9 +5,9 @@
         <h1>My Positions</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item">Tables</li>
-            <li class="breadcrumb-item active">Data</li>
+            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="/sectors">Sectors</a></li>
+            <li class="breadcrumb-item active"><a href="/industries">Industries</a></li>
           </ol>
         </nav>
       </div>
@@ -24,6 +24,7 @@
                     <button type="button" class="btn btn-outline-primary">Add a Position!</button>
                   </router-link>
                 </p>
+                <p>Current Account Value: ${{ currentAccountValue }}</p>
                 <!-- Table with stripped rows -->
                 <table class="table datatable">
                   <thead>
@@ -87,6 +88,7 @@ export default {
     return {
       message: "Your Stocks:",
       stocks: [],
+      currentAccountValue: 0,
     };
   },
   created: function () {
@@ -96,7 +98,8 @@ export default {
     indexStocks: function () {
       axios.get("http://localhost:3000/stocks").then((response) => {
         this.stocks = response.data;
-        console.log("Success! Stocks data:", response.data);
+        this.currentAccountValue = this.stocks[0].current_account_value;
+        console.log("Success! Stocks data:", response.data, this.currentAccountValue);
       });
     },
   },

@@ -59,7 +59,7 @@ export default {
       this.industry = response.data;
       this.stocks = response.data.stocks;
       this.stocks.forEach((stock) => {
-        this.chartData.labels.push(stock.symbol);
+        this.chartData.labels.push(stock.company_name);
         this.chartData.datasets[0].data.push(stock.stock_percent_of_industry);
       });
     });

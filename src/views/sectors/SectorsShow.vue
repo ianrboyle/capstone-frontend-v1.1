@@ -25,7 +25,7 @@
                   <thead>
                     <tr>
                       <th scope="col">Industry</th>
-                      <th scope="col">% of {{ sector.sector }}</th>
+                      <th scope="col" :key="sector.id">% of {{ sector.sector }}</th>
                       <th scope="col">Industry Value</th>
                       <th scope="col">% of Account</th>
                     </tr>
@@ -149,7 +149,6 @@ export default {
       this.stocks = response.data.stocks;
       this.industries = response.data.industry_percent_of_sector;
       this.accountValue = this.stocks[0].current_account_value;
-      console.log("Success", response.data, this.accountValue);
     });
   },
   methods: {
