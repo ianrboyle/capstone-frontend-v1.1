@@ -51,11 +51,11 @@ export default {
     await this.renderChart(this.chartData, this.options);
     await axios.get("http://localhost:3000/historicals").then((response) => {
       this.historicals = response.data;
-      let index = 29;
-      while (index >= 0) {
+      let index = this.historicals.length - 31;
+      while (index <= this.historicals.length - 1) {
         this.chartData.labels.push(this.historicals[index].date);
         this.chartData.datasets[0].data.push(this.historicals[index].portfolio_value);
-        index -= 1;
+        index += 1;
       }
 
       console.log("Success! Historical data:", response.data);
