@@ -53,7 +53,6 @@ export default {
     };
   },
   async mounted() {
-    await this.renderChart(this.chartData, this.options);
     await axios.get("http://localhost:3000/sectors/" + this.$route.params.id).then((response) => {
       this.industries = response.data.industry_percent_of_sector;
       this.industries.forEach((industry) => {
@@ -61,6 +60,7 @@ export default {
         this.chartData.datasets[0].data.push(industry.industry_percent);
       });
     });
+    await this.renderChart(this.chartData, this.options);
   },
 };
 </script>

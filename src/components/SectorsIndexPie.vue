@@ -53,7 +53,6 @@ export default {
     };
   },
   async mounted() {
-    await this.renderChart(this.chartData, this.options);
     await axios.get("http://localhost:3000/sectors").then((response) => {
       this.sectors = response.data;
       this.sectors.forEach((sector) => {
@@ -62,6 +61,7 @@ export default {
       });
       console.log("Sectors from pie", this.sectors);
     });
+    await this.renderChart(this.chartData, this.options);
   },
 };
 </script>

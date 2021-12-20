@@ -53,7 +53,6 @@ export default {
     };
   },
   async mounted() {
-    await this.renderChart(this.chartData, this.options);
     await axios.get("http://localhost:3000/sectors/" + this.$route.params.id).then((response) => {
       this.stocks = response.data.stocks;
       this.stocks.forEach((stock) => {
@@ -62,6 +61,7 @@ export default {
       });
       console.log("industry from pie", this.industries);
     });
+    await this.renderChart(this.chartData, this.options);
   },
 };
 </script>

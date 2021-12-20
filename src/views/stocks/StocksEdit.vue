@@ -18,7 +18,7 @@
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Add A Position</h5>
+                <h5 class="card-title">Update Position</h5>
 
                 <!-- General Form Elements -->
                 <form v-on:submit.prevent="updateStock()">
@@ -47,6 +47,44 @@
                     <label class="col-sm-2 col-form-label">Update Position</label>
                     <div class="col-sm-10">
                       <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <!-- Basic Modal -->
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger"
+                      data-bs-toggle="modal"
+                      data-bs-target="#basicModal"
+                    >
+                      Delete Position
+                    </button>
+                    <div class="modal fade" id="basicModal" tabindex="-1">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Delete Position</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you wish to remove this position from your portfolio?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <router-link v-bind:to="`/stocks`">
+                              <button
+                                type="button"
+                                v-on:click="destroyStock()"
+                                class="btn btn-danger"
+                                data-bs-dismiss="modal"
+                              >
+                                Delete
+                              </button>
+                            </router-link>
+                          </div>
+                        </div>
+                        <!-- End Basic Modal-->
+                      </div>
                     </div>
                   </div>
                 </form>
@@ -88,6 +126,12 @@ export default {
         .catch((error) => {
           console.log(error.response);
         });
+    },
+    destroyStock: function () {
+      axios.delete("http://localhost:3000/stocks/" + this.$route.params.id).then((response) => {
+        console.log(response.data);
+        this.$router.push("/stocks");
+      });
     },
   },
 };

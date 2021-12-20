@@ -44,13 +44,48 @@
                     </tr>
                   </tbody>
                 </table>
+                <div class="col-lg-6">
+                  <!-- Basic Modal -->
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#basicModal"
+                  >
+                    Delete Industry
+                  </button>
+                  <div class="modal fade" id="basicModal" tabindex="-1">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Delete Industry</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Are you sure you wish to delete this industry?</div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <router-link v-bind:to="`/industries`">
+                            <button
+                              type="button"
+                              v-on:click="destroyIndustry()"
+                              class="btn btn-danger"
+                              data-bs-dismiss="modal"
+                            >
+                              Delete
+                            </button>
+                          </router-link>
+                        </div>
+                      </div>
+                      <!-- End Basic Modal-->
+                    </div>
+                  </div>
+                </div>
                 <!-- End Table with stripped rows -->
                 <!-- <p>
                   <router-link v-bind:to="`/industries/${industry.id}/edit`">
                     <button type="button" class="btn btn-outline-success">Edit Sector</button>
                   </router-link>
                 </p> -->
-                <p><button class="btn btn-outline-danger" v-on:click="destroyIndustry()">Delete</button></p>
               </div>
             </div>
           </div>

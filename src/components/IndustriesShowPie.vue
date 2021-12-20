@@ -54,7 +54,6 @@ export default {
     };
   },
   async mounted() {
-    await this.renderChart(this.chartData, this.options);
     await axios.get("http://localhost:3000/industries/" + this.$route.params.id).then((response) => {
       this.industry = response.data;
       this.stocks = response.data.stocks;
@@ -63,6 +62,7 @@ export default {
         this.chartData.datasets[0].data.push(stock.stock_percent_of_industry);
       });
     });
+    await this.renderChart(this.chartData, this.options);
   },
 };
 </script>

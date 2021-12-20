@@ -1,6 +1,7 @@
 <script>
 import { Line } from "vue-chartjs";
 import axios from "axios";
+
 export default {
   extends: Line,
   data() {
@@ -48,7 +49,6 @@ export default {
     };
   },
   async mounted() {
-    await this.renderChart(this.chartData, this.options);
     await axios.get("http://localhost:3000/historicals").then((response) => {
       this.historicals = response.data;
       let index = this.historicals.length - 31;
@@ -57,9 +57,9 @@ export default {
         this.chartData.datasets[0].data.push(this.historicals[index].portfolio_value);
         index += 1;
       }
-
       console.log("Success! Historical data:", response.data);
     });
+    await this.renderChart(this.chartData, this.options);
   },
 };
 </script>

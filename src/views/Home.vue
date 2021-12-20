@@ -9,25 +9,14 @@
               <!-- Sales Card -->
               <div class="col-xxl-4 col-md-6">
                 <div class="card info-card sales-card">
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div>
-
                   <div class="card-body">
                     <h5 class="card-title">
                       Current Account Value
                       <span>| {{ historicals[historicals.length - 1].date }}</span>
                     </h5>
-
+                    <button @click="reloadPage" v-on:click="updateHistorical()" class="btn btn-outline-primary">
+                      Update
+                    </button>
                     <div class="d-flex align-items-center">
                       <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                         <i class="bi bi-currency-dollar"></i>
@@ -145,7 +134,7 @@
                       Portfolio Performance
                       <span>/Month</span>
                       <div>
-                        <line-chart></line-chart>
+                        <line-chart defer></line-chart>
                       </div>
                     </h5>
                   </div>
@@ -175,59 +164,47 @@
 
               <div class="card-body">
                 <h5 class="card-title">
-                  Recent Activity
+                  Market Activity
                   <span>| Today</span>
                 </h5>
 
                 <div class="activity">
                   <div class="activity-item d-flex">
-                    <div class="activite-label">32 min</div>
+                    <!-- <div class="activite-label">32 min</div> -->
                     <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
                     <div class="activity-content">
-                      Quia quae rerum
-                      <a href="#" class="fw-bold text-dark">explicabo officiis</a>
-                      beatae
+                      <a class="fw-bold text-dark" :href="`${news.data[0].url}`">{{ news.data[0].title }}</a>
+                      <p>{{ news.data[0].description }}</p>
                     </div>
                   </div>
                   <!-- End activity item-->
 
                   <div class="activity-item d-flex">
-                    <div class="activite-label">56 min</div>
+                    <!-- <div class="activite-label">56 min</div> -->
                     <i class="bi bi-circle-fill activity-badge text-danger align-self-start"></i>
-                    <div class="activity-content">Voluptatem blanditiis blanditiis eveniet</div>
-                  </div>
-                  <!-- End activity item-->
-
-                  <div class="activity-item d-flex">
-                    <div class="activite-label">2 hrs</div>
-                    <i class="bi bi-circle-fill activity-badge text-primary align-self-start"></i>
-                    <div class="activity-content">Voluptates corrupti molestias voluptatem</div>
-                  </div>
-                  <!-- End activity item-->
-
-                  <div class="activity-item d-flex">
-                    <div class="activite-label">1 day</div>
-                    <i class="bi bi-circle-fill activity-badge text-info align-self-start"></i>
                     <div class="activity-content">
-                      Tempore autem saepe
-                      <a href="#" class="fw-bold text-dark">occaecati voluptatem</a>
-                      tempore
+                      <a class="fw-bold text-dark" :href="`${news.data[0].similar[0].url}`">
+                        {{ news.data[0].similar[0].title }}
+                      </a>
+                      <p>{{ news.data[0].similar[0].description }}</p>
                     </div>
                   </div>
                   <!-- End activity item-->
 
                   <div class="activity-item d-flex">
-                    <div class="activite-label">2 days</div>
-                    <i class="bi bi-circle-fill activity-badge text-warning align-self-start"></i>
-                    <div class="activity-content">Est sit eum reiciendis exercitationem</div>
+                    <!-- <div class="activite-label">2 hrs</div> -->
+                    <i class="bi bi-circle-fill activity-badge text-primary align-self-start"></i>
+                    <div class="activity-content">
+                      <a class="fw-bold text-dark" :href="`${news.data[1].url}`">{{ news.data[1].title }}</a>
+                      <p>{{ news.data[1].description }}</p>
+                    </div>
                   </div>
                   <!-- End activity item-->
 
-                  <div class="activity-item d-flex">
-                    <div class="activite-label">4 weeks</div>
-                    <i class="bi bi-circle-fill activity-badge text-muted align-self-start"></i>
-                    <div class="activity-content">Dicta dolorem harum nulla eius. Ut quidem quidem sit quas</div>
-                  </div>
+                  <!-- End activity item-->
+
+                  <!-- End activity item-->
+
                   <!-- End activity item-->
                 </div>
               </div>
@@ -235,7 +212,7 @@
             <!-- End Recent Activity -->
 
             <!-- Budget Report -->
-            <div class="card">
+            <!-- <div class="card">
               <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -257,11 +234,11 @@
 
                 <div id="budgetChart" style="min-height: 400px" class="echart"></div>
               </div>
-            </div>
+            </div> -->
             <!-- End Budget Report -->
 
             <!-- Website Traffic -->
-            <div class="card">
+            <!-- <div class="card">
               <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -283,7 +260,7 @@
 
                 <div id="trafficChart" style="min-height: 400px" class="echart"></div>
               </div>
-            </div>
+            </div> -->
             <!-- End Website Traffic -->
           </div>
           <!-- End Right side columns -->
@@ -305,16 +282,30 @@ export default {
   data: function () {
     return {
       historicals: [],
+      news: [],
+      newHistoricalParam: {},
     };
   },
   created: function () {
     this.indexHistoricals();
+    this.indexNews();
   },
   methods: {
     indexHistoricals: function () {
       axios.get("http://localhost:3000/historicals").then((response) => {
         this.historicals = response.data;
-        console.log("Success! Stocks data:", response.data);
+      });
+    },
+    updateHistorical: function () {
+      axios.post("http://localhost:3000/historicals", this.newHistoricalParam).then(() => {});
+    },
+    reloadPage() {
+      window.location.reload();
+    },
+    indexNews: function () {
+      axios.get("http://localhost:3000/news").then((response) => {
+        this.news = response.data;
+        console.log(this.news);
       });
     },
   },
