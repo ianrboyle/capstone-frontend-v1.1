@@ -25,17 +25,15 @@
                   <div class="card-body">
                     <h5 class="card-title">
                       Current Account Value
-                      <span>| Today</span>
+                      <span>| {{ historicals[0].date }}</span>
                     </h5>
 
                     <div class="d-flex align-items-center">
                       <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-cart"></i>
+                        <i class="bi bi-currency-dollar"></i>
                       </div>
                       <div class="ps-3">
-                        <h6>145</h6>
-                        <span class="text-success small pt-1 fw-bold">12%</span>
-                        <span class="text-muted small pt-2 ps-1">increase</span>
+                        <h6>${{ historicals[0].portfolio_value }}</h6>
                       </div>
                     </div>
                   </div>
@@ -46,7 +44,7 @@
               <!-- Revenue Card -->
               <div class="col-xxl-4 col-md-6">
                 <div class="card info-card revenue-card">
-                  <div class="filter">
+                  <!-- <div class="filter">
                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                       <li class="dropdown-header text-start">
@@ -57,22 +55,33 @@
                       <li><a class="dropdown-item" href="#">This Month</a></li>
                       <li><a class="dropdown-item" href="#">This Year</a></li>
                     </ul>
-                  </div>
+                  </div> -->
 
                   <div class="card-body">
                     <h5 class="card-title">
-                      % Gain over the last day
-                      <span>| This Month</span>
+                      % Gain/Loss
+                      <span>| 24hr</span>
                     </h5>
 
                     <div class="d-flex align-items-center">
                       <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-currency-dollar"></i>
+                        <i class="bi bi-percent"></i>
                       </div>
                       <div class="ps-3">
-                        <h6>$3,264</h6>
-                        <span class="text-success small pt-1 fw-bold">8%</span>
-                        <span class="text-muted small pt-2 ps-1">increase</span>
+                        <div v-if="historicals[0].day_gain_loss_percent > 0">
+                          <h6>${{ historicals[0].day_gain_loss }}</h6>
+                          <span class="text-success small pt-1 fw-bold">
+                            {{ historicals[0].day_gain_loss_percent }}%
+                          </span>
+                          <span class="text-muted small pt-2 ps-1">increase</span>
+                        </div>
+                        <div v-if="historicals[0].day_gain_loss_percent < 0">
+                          <h6>${{ historicals[0].day_gain_loss }}</h6>
+                          <span class="text-danger small pt-1 fw-bold">
+                            {{ historicals[0].day_gain_loss_percent }}%
+                          </span>
+                          <span class="text-muted small pt-2 ps-1">decrease</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -81,9 +90,9 @@
               <!-- End Revenue Card -->
 
               <!-- Customers Card -->
-              <div class="col-xxl-4 col-xl-12">
-                <div class="card info-card customers-card">
-                  <div class="filter">
+              <div class="col-xxl-4 col-md-6">
+                <div class="card info-card revenue-card">
+                  <!-- <div class="filter">
                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                       <li class="dropdown-header text-start">
@@ -94,22 +103,33 @@
                       <li><a class="dropdown-item" href="#">This Month</a></li>
                       <li><a class="dropdown-item" href="#">This Year</a></li>
                     </ul>
-                  </div>
+                  </div> -->
 
                   <div class="card-body">
                     <h5 class="card-title">
-                      Customers
-                      <span>| This Year</span>
+                      % Gain/Loss
+                      <span>| 1mo</span>
                     </h5>
 
                     <div class="d-flex align-items-center">
                       <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-people"></i>
+                        <i class="bi bi-percent"></i>
                       </div>
                       <div class="ps-3">
-                        <h6>1244</h6>
-                        <span class="text-danger small pt-1 fw-bold">12%</span>
-                        <span class="text-muted small pt-2 ps-1">decrease</span>
+                        <div v-if="historicals[0].month_gain_loss_percent > 0">
+                          <h6>${{ historicals[0].month_gain_loss }}</h6>
+                          <span class="text-success small pt-1 fw-bold">
+                            {{ historicals[0].month_gain_loss_percent }}%
+                          </span>
+                          <span class="text-muted small pt-2 ps-1">increase</span>
+                        </div>
+                        <div v-if="historicals[0].month_gain_loss_percent < 0">
+                          <h6>${{ historicals[0].month_gain_loss }}</h6>
+                          <span class="text-danger small pt-1 fw-bold">
+                            {{ historicals[0].month_gain_loss_percent }}%
+                          </span>
+                          <span class="text-muted small pt-2 ps-1">decrease</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -137,6 +157,10 @@
                     <h5 class="card-title">
                       Reports
                       <span>/Today</span>
+                      <div>
+                        <h3>Line Chart Example in Vue</h3>
+                        <line-chart></line-chart>
+                      </div>
                     </h5>
                   </div>
                 </div>
@@ -502,6 +526,28 @@
 
 <script>
 // @ is an alias to /src
+import axios from "axios";
+import LineChart from "@/components/HomePageChart.vue";
 
-export default {};
+export default {
+  components: {
+    LineChart,
+  },
+  data: function () {
+    return {
+      historicals: [],
+    };
+  },
+  created: function () {
+    this.indexHistoricals();
+  },
+  methods: {
+    indexHistoricals: function () {
+      axios.get("http://localhost:3000/historicals").then((response) => {
+        this.historicals = response.data;
+        console.log("Success! Stocks data:", response.data);
+      });
+    },
+  },
+};
 </script>

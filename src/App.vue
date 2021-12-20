@@ -599,9 +599,6 @@ export default {
       // currentUser: "",
     };
   },
-  created: function () {
-    this.getUserInfo();
-  },
   methods: {
     isLoggedIn: function () {
       return localStorage.getItem("jwt");
