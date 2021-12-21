@@ -14,12 +14,15 @@ import SectorsShow from "../views/sectors/SectorsShow.vue";
 import IndustriesIndex from "../views/industries/IndustriesIndex.vue";
 import IndustriesNew from "../views/industries/IndustriesNew.vue";
 import IndustriesShow from "../views/industries/IndustriesShow.vue";
+import Welcome from "../views/Welcome.vue";
+import Profile from "../views/Profile.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
+  { path: "/", name: "Welcome", component: Welcome },
   {
-    path: "/",
+    path: "/home",
     name: "Home",
     component: Home,
   },
@@ -61,6 +64,8 @@ const routes = [
   { path: "/industries", name: "IndustriesIndex", component: IndustriesIndex },
   { path: "/industries/new", name: "IndustriesNew", component: IndustriesNew },
   { path: "/industries/:id", name: "IndustriesShow", component: IndustriesShow },
+
+  { path: "/profile", name: "Profile", component: Profile },
 ];
 
 const router = new VueRouter({

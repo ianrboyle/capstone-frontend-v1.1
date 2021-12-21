@@ -32,13 +32,14 @@
                   </thead>
                   <tbody>
                     <tr v-for="industry in industries" :key="industry.id">
-                      <td scope="row">
+                      <td v-if="industry.industry_value > 0" scope="row">
                         <router-link v-bind:to="`/industries/${industry.id}`">
                           <button type="button" class="btn btn-outline-primary">{{ industry.industry }}</button>
                         </router-link>
                       </td>
                       <td>{{ industry.industry_percent_of_account }}%</td>
                       <td>${{ industry.industry_value }}</td>
+                      =
                     </tr>
                   </tbody>
                 </table>

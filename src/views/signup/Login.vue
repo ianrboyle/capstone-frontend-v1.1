@@ -72,7 +72,7 @@
                       <div class="col-12">
                         <p class="small mb-0">
                           Don't have account?
-                          <a href="pages-register.html">Create an account</a>
+                          <a href="/signup">Create an account</a>
                         </p>
                       </div>
                     </form>
@@ -129,7 +129,7 @@ export default {
           axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
           this.$parent.logInMessage = "Successfully logged in!";
-          this.$router.push("/");
+          this.$router.push("/home");
         })
         .catch((error) => {
           console.log(error.response);
