@@ -158,12 +158,12 @@
 
                 <div class="activity">
                   <div class="activity-item d-flex">
-                    <!-- <div class="activite-label">32 min</div> -->
-                    <!-- <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
+                    <div class="activite-label">32 min</div>
+                    <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
                     <div class="activity-content">
                       <a class="fw-bold text-dark" :href="`${news.data[0].url}`">{{ news.data[0].title }}</a>
                       <p>{{ news.data[0].description }}</p>
-                    </div> -->
+                    </div>
                   </div>
                   <!-- End activity item-->
 
@@ -202,7 +202,7 @@
           <!-- End Right side columns -->
         </div>
       </section>
-      <section v-else class="section dashboard">
+      <section v-if="stocks.length == 0" class="section dashboard">
         <div class="row align-items-top">
           <div class="col-lg-6">
             <!-- Card with an image on left -->
