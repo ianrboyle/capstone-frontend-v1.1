@@ -2,7 +2,7 @@
   <div class="home">
     <main id="main" class="main">
       <h1>My Dashboard</h1>
-      <section v-if="historicals.length > 0">
+      <section v-if="stocks.length > 0">
         <div class="row">
           <!-- Left side columns -->
           <div class="col-lg-8">
@@ -313,9 +313,11 @@ export default {
       news: [],
       newHistoricalParam: {},
       errors: {},
+      stocks: {},
     };
   },
   created: function () {
+    this.indexStocks();
     this.indexHistoricals();
     this.indexNews();
     this.limitReached();
@@ -341,6 +343,11 @@ export default {
     limitReached: async function () {
       this.errors = this.news.error;
       return this.errors;
+    },
+    indexStocks: function () {
+      axios.get("http://localhost:3000/stocks").then((response) => {
+        this.stocks = response.data;
+      });
     },
   },
 };

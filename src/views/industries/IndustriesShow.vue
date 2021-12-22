@@ -5,7 +5,7 @@
         <h1>{{ industry.industry }}</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
             <li class="breadcrumb-item"><a href="/stocks">Positions</a></li>
             <li class="breadcrumb-item"><a href="/industries">Industries</a></li>
             <li class="breadcrumb-item active">{{ industry.industry }}</li>

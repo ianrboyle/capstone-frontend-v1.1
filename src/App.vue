@@ -34,9 +34,7 @@
             <li v-if="isLoggedIn()" class="nav-item dropdown pe-3">
               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                 <!-- <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" /> -->
-                <span class="d-none d-md-block dropdown-toggle ps-2" :key="currentUser.id">
-                  Welcome {{ currentUser.name }}
-                </span>
+                <span class="d-none d-md-block dropdown-toggle ps-2">Welcome</span>
               </a>
               <!-- End Profile Iamge Icon -->
 
@@ -464,20 +462,20 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data: function () {
     return {
       stocks: [],
-      currentUser: {},
+      // currentUser: {},
     };
   },
-  created: function () {
-    axios.get("http://localhost:3000/stocks").then((response) => {
-      this.stocks = response.data;
-      this.currentUser = this.stocks[0].user;
-    });
-  },
+  // created: function () {
+  //   axios.get("http://localhost:3000/stocks").then((response) => {
+  //     this.stocks = response.data;
+  //     this.currentUser = this.stocks[0].user;
+  //   });
+  // },
   methods: {
     isLoggedIn: function () {
       return localStorage.getItem("jwt");

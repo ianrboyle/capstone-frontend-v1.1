@@ -56,8 +56,10 @@ export default {
     await axios.get("http://localhost:3000/sectors").then((response) => {
       this.sectors = response.data;
       this.sectors.forEach((sector) => {
-        this.chartData.labels.push(sector.sector);
-        this.chartData.datasets[0].data.push(sector.sector_percent_of_account);
+        if (sector.sector_value > 0) {
+          this.chartData.labels.push(sector.sector);
+          this.chartData.datasets[0].data.push(sector.sector_percent_of_account);
+        }
       });
       console.log("Sectors from pie", this.sectors);
     });

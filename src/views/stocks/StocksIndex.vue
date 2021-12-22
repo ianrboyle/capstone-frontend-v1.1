@@ -5,7 +5,7 @@
         <h1>My Positions</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
             <li class="breadcrumb-item active"><a href="/sectors">Sectors</a></li>
             <li class="breadcrumb-item active"><a href="/industries">Industries</a></li>
           </ol>

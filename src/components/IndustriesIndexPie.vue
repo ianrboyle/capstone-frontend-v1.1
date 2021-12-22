@@ -56,8 +56,10 @@ export default {
     await axios.get("http://localhost:3000/industries").then((response) => {
       this.industries = response.data;
       this.industries.forEach((industry) => {
-        this.chartData.labels.push(industry.industry);
-        this.chartData.datasets[0].data.push(industry.industry_percent_of_account);
+        if (industry.industry_value > 0) {
+          this.chartData.labels.push(industry.industry);
+          this.chartData.datasets[0].data.push(industry.industry_percent_of_account);
+        }
       });
       console.log("industry from pie", this.industries);
     });

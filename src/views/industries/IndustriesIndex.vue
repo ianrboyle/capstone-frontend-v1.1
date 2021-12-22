@@ -5,7 +5,7 @@
         <h1>My Industries</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
             <li class="breadcrumb-item"><a href="/stocks">Positions</a></li>
             <li class="breadcrumb-item"><a href="/sectors">Sectors</a></li>
             <li class="breadcrumb-item active">Industries</li>
@@ -37,9 +37,8 @@
                           <button type="button" class="btn btn-outline-primary">{{ industry.industry }}</button>
                         </router-link>
                       </td>
-                      <td>{{ industry.industry_percent_of_account }}%</td>
-                      <td>${{ industry.industry_value }}</td>
-                      =
+                      <td v-if="industry.industry_value > 0">{{ industry.industry_percent_of_account }}%</td>
+                      <td v-if="industry.industry_value > 0">${{ industry.industry_value }}</td>
                     </tr>
                   </tbody>
                 </table>
