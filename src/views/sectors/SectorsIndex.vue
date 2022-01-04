@@ -61,6 +61,7 @@
           </div>
         </div>
       </section>
+      <Sectors />
     </main>
   </div>
 </template>
@@ -68,10 +69,12 @@
 <script>
 import axios from "axios";
 // import PieChart from ".../components/PieChart.vue";
+import Sectors from "@/components/Sectors";
 import PieChart from "@/components/SectorsIndexPie";
 export default {
   components: {
     PieChart,
+    Sectors,
   },
 
   data: function () {
@@ -85,15 +88,6 @@ export default {
       this.sectors = response.data;
       console.log("Success! Sectors data:", response.data);
     });
-    // this.indexSectors();
   },
-  // methods: {
-  //   indexSectors: function () {
-  //     axios.get("http://localhost:3000/sectors").then((response) => {
-  //       this.sectors = response.data;
-  //       console.log("Success! Sectors data:", response.data);
-  //     });
-  //   },
-  // },
 };
 </script>
