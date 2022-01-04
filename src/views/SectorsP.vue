@@ -11,7 +11,20 @@
           </ol>
         </nav>
       </div>
-      <Sectors :sectors="sectors" />
+      <section class="section">
+        <Sectors :sectors="sectors" />
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Sector % of Account</h5>
+
+              <!-- Pie Chart -->
+              <SectorPie :sectors="sectors" />
+              <!-- End Pie CHart -->
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 </template>
@@ -20,6 +33,7 @@
 import axios from "axios";
 // import PieChart from ".../components/PieChart.vue";
 import Sectors from "@/components/Sectors";
+import SectorPie from "@/components/SectorPie";
 export default {
   data: function () {
     return {
@@ -28,6 +42,7 @@ export default {
   },
   components: {
     Sectors,
+    SectorPie,
   },
   created: function () {
     axios.get("http://localhost:3000/sectors").then((response) => {

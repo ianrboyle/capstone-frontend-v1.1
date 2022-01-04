@@ -2,12 +2,11 @@
 import { Pie } from "vue-chartjs";
 
 export default {
-  props: {
-    sectors: { type: Array },
-  },
   extends: Pie,
+  props: { sectors: { type: Array } },
   data() {
     return {
+      sectorData: this.sectors,
       chartData: {
         labels: [],
         datasets: [
@@ -54,16 +53,26 @@ export default {
       },
     };
   },
-  async mounted() {
-    this.sectors.forEach((sector) => {
+  mounted: async function () {
+    await this.sectorData.forEach((sector) => {
       if (sector.sector_value > 0) {
         this.chartData.labels.push(sector.sector);
         this.chartData.datasets[0].data.push(sector.sector_percent_of_account);
       }
-
-      console.log("Sectors from pie", this.sectors);
     });
+    console.log("Sectors from pie Sector Data", this.sectorData);
     await this.renderChart(this.chartData, this.options);
   },
+  // async computed() {
+  //   this.sectorData.forEach((sector) => {
+  //     if (sector.sector_value > 0) {
+  //       this.chartData.labels.push(sector.sector);
+  //       this.chartData.datasets[0].data.push(sector.sector_percent_of_account);
+  //     }
+
+  //     console.log("Sectors from pie", this.sectors);
+  //   });
+  //   await this.renderChart(this.chartData, this.options);
+  // },
 };
 </script>
