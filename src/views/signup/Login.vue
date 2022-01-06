@@ -18,10 +18,13 @@
                   <div class="card-body">
                     <div class="pt-4 pb-2">
                       <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                      <h4 class="card-title text-center pb-0 fs-4">
+                        Use "demo@example.com" and "password" for username and password.
+                      </h4>
                       <ul>
                         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
                       </ul>
-                      <p class="text-center small">Enter your username & password to login</p>
+                      <!-- <p class="text-center small">Enter your username & password to login</p> -->
                     </div>
 
                     <form v-on:submit.prevent="submit()" class="row g-3 needs-validation" novalidate>

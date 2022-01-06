@@ -1,6 +1,11 @@
 <template>
   <main id="main" class="main">
     <h1>Welcome to Portfoli⊕ Tracker!</h1>
+    <h3>
+      Click
+      <a href="/login">here</a>
+      for a demo!
+    </h3>
     <section>
       <div class="row">
         <div class="col-lg-8">
