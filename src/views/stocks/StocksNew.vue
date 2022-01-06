@@ -75,7 +75,7 @@ export default {
     createStock: function () {
       console.log("Creating a new stock");
       axios
-        .post("http://localhost:3000/stocks/" + this.newStockParams.symbol, this.newStockParams)
+        .post("https://fierce-taiga-06308.herokuapp.com/stocks/" + this.newStockParams.symbol, this.newStockParams)
         .then(() => {
           this.$router.push("/stocks");
         })

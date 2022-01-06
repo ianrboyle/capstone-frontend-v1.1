@@ -53,7 +53,7 @@ export default {
     };
   },
   async mounted() {
-    await axios.get("http://localhost:3000/industries").then((response) => {
+    await axios.get("https://fierce-taiga-06308.herokuapp.com/industries").then((response) => {
       this.industries = response.data;
       this.industries.forEach((industry) => {
         if (industry.industry_value > 0) {

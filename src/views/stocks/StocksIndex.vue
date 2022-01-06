@@ -96,7 +96,7 @@ export default {
   },
   methods: {
     indexStocks: function () {
-      axios.get("http://localhost:3000/stocks").then((response) => {
+      axios.get("https://fierce-taiga-06308.herokuapp.com/stocks").then((response) => {
         this.stocks = response.data;
         this.currentAccountValue = this.stocks[0].current_account_value;
         console.log("Success! Stocks data:", response.data, this.currentAccountValue);

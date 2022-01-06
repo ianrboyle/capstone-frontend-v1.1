@@ -105,7 +105,7 @@ export default {
     };
   },
   created: function () {
-    axios.get("http://localhost:3000/stocks/" + this.$route.params.id).then((response) => {
+    axios.get("https://fierce-taiga-06308.herokuapp.com/stocks/" + this.$route.params.id).then((response) => {
       this.stock = response.data;
       this.sector = response.data.sector;
       this.industry = response.data.industry;
@@ -114,7 +114,7 @@ export default {
   },
   methods: {
     destroyStock: function () {
-      axios.delete("http://localhost:3000/stocks/" + this.$route.params.id).then((response) => {
+      axios.delete("https://fierce-taiga-06308.herokuapp.com/stocks/" + this.$route.params.id).then((response) => {
         console.log(response.data);
         this.$router.push("/stocks");
       });

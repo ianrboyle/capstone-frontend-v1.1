@@ -28,7 +28,7 @@ export default {
     createSector: function () {
       console.log("Creating a new sector");
       axios
-        .post("http://localhost:3000/sectors", this.newSectorParams)
+        .post("https://fierce-taiga-06308.herokuapp.com/sectors", this.newSectorParams)
         .then(() => {
           this.$router.push("/sectors");
         })

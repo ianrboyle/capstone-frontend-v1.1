@@ -28,7 +28,7 @@ export default {
     createIndustry: function () {
       console.log("Creating a new industry");
       axios
-        .post("http://localhost:3000/industries", this.newIndustryParams)
+        .post("https://fierce-taiga-06308.herokuapp.com/industries", this.newIndustryParams)
         .then(() => {
           this.$router.push("/industries");
         })

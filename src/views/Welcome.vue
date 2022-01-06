@@ -164,7 +164,7 @@ export default {
   },
   methods: {
     indexNews: function () {
-      axios.get("http://localhost:3000/news").then((response) => {
+      axios.get("https://fierce-taiga-06308.herokuapp.com/news").then((response) => {
         this.news = response.data;
         console.log(this.news);
       });

@@ -53,7 +53,7 @@ export default {
     };
   },
   async mounted() {
-    await axios.get("http://localhost:3000/sectors/" + this.$route.params.id).then((response) => {
+    await axios.get("https://fierce-taiga-06308.herokuapp.com/sectors/" + this.$route.params.id).then((response) => {
       this.industries = response.data.industry_percent_of_sector;
       this.industries.forEach((industry) => {
         this.chartData.labels.push(industry.industry);

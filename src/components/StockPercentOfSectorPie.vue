@@ -53,7 +53,7 @@ export default {
     };
   },
   async mounted() {
-    await axios.get("http://localhost:3000/sectors/" + this.$route.params.id).then((response) => {
+    await axios.get("https://fierce-taiga-06308.herokuapp.com/sectors/" + this.$route.params.id).then((response) => {
       this.stocks = response.data.stocks;
       this.stocks.forEach((stock) => {
         this.chartData.labels.push(stock.symbol);

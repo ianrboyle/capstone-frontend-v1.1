@@ -54,7 +54,7 @@ export default {
     };
   },
   async mounted() {
-    await axios.get("http://localhost:3000/industries/" + this.$route.params.id).then((response) => {
+    await axios.get("https://fierce-taiga-06308.herokuapp.com/industries/" + this.$route.params.id).then((response) => {
       this.industry = response.data;
       this.stocks = response.data.stocks;
       this.stocks.forEach((stock) => {

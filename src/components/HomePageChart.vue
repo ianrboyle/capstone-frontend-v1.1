@@ -49,7 +49,7 @@ export default {
     };
   },
   async mounted() {
-    await axios.get("http://localhost:3000/historicals").then((response) => {
+    await axios.get("https://fierce-taiga-06308.herokuapp.com/historicals").then((response) => {
       this.historicals = response.data;
       let index = this.historicals.length - 31;
       while (index <= this.historicals.length - 1) {

@@ -21,7 +21,7 @@ export default {
     };
   },
   async mounted() {
-    await axios.get("http://localhost:3000/stocks").then((response) => {
+    await axios.get("https://fierce-taiga-06308.herokuapp.com/stocks").then((response) => {
       this.stocks = response.data;
       console.log(response.data);
       this.currentUser = this.stocks[0].user;

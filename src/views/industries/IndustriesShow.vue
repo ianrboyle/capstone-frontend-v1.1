@@ -129,7 +129,7 @@ export default {
     };
   },
   created: function () {
-    axios.get("http://localhost:3000/industries/" + this.$route.params.id).then((response) => {
+    axios.get("https://fierce-taiga-06308.herokuapp.com/industries/" + this.$route.params.id).then((response) => {
       this.industry = response.data;
       this.stocks = response.data.stocks;
       console.log("Success", response.data, typeof this.stocks[0]["current_value"]);
@@ -137,7 +137,7 @@ export default {
   },
   methods: {
     destroyIndustry: function () {
-      axios.delete("http://localhost:3000/industries/" + this.$route.params.id).then((response) => {
+      axios.delete("https://fierce-taiga-06308.herokuapp.com/industries/" + this.$route.params.id).then((response) => {
         console.log(response.data);
         this.$router.push("/industries");
       });

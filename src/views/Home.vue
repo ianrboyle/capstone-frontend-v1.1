@@ -325,18 +325,18 @@ export default {
   },
   methods: {
     indexHistoricals: function () {
-      axios.get("http://localhost:3000/historicals").then((response) => {
+      axios.get("https://fierce-taiga-06308.herokuapp.com/historicals").then((response) => {
         this.historicals = response.data;
       });
     },
     updateHistorical: function () {
-      axios.post("http://localhost:3000/historicals", this.newHistoricalParam).then(() => {});
+      axios.post("https://fierce-taiga-06308.herokuapp.com/historicals", this.newHistoricalParam).then(() => {});
     },
     reloadPage() {
       window.location.reload();
     },
     indexNews: function () {
-      axios.get("http://localhost:3000/news").then((response) => {
+      axios.get("https://fierce-taiga-06308.herokuapp.com/news").then((response) => {
         this.news = response.data;
         console.log(this.news);
       });
@@ -346,7 +346,7 @@ export default {
       return this.errors;
     },
     indexStocks: function () {
-      axios.get("http://localhost:3000/stocks").then((response) => {
+      axios.get("https://fierce-taiga-06308.herokuapp.com/stocks").then((response) => {
         this.stocks = response.data;
       });
     },

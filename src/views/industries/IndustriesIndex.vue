@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     indexSectors: function () {
-      axios.get("http://localhost:3000/industries").then((response) => {
+      axios.get("https://fierce-taiga-06308.herokuapp.com/industries").then((response) => {
         this.industries = response.data;
         console.log("Success! Industries data:", response.data);
       });
