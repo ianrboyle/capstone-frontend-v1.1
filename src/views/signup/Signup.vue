@@ -138,7 +138,7 @@ export default {
   methods: {
     submit: function () {
       axios
-        .post("http://localhost:3000/users", this.newUserParams)
+        .post("https://fierce-taiga-06308.herokuapp.com/users", this.newUserParams)
         .then((response) => {
           console.log(response.data);
           this.$router.push("/login");
