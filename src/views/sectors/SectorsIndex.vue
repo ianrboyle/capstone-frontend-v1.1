@@ -61,7 +61,6 @@
           </div>
         </div>
       </section>
-      <Sectors />
     </main>
   </div>
 </template>
@@ -69,12 +68,11 @@
 <script>
 import axios from "axios";
 // import PieChart from ".../components/PieChart.vue";
-import Sectors from "@/components/Sectors";
+
 import PieChart from "@/components/SectorsIndexPie";
 export default {
   components: {
     PieChart,
-    Sectors,
   },
 
   data: function () {

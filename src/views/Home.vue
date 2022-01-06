@@ -15,15 +15,16 @@
                       Current Account Value
                       <span>| {{ historicals[historicals.length - 1].date }}</span>
                     </h5>
-                    <button @click="reloadPage" v-on:click="updateHistorical()" class="btn btn-outline-primary">
-                      Update
-                    </button>
+                    <div></div>
                     <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <!-- <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                         <i class="bi bi-currency-dollar"></i>
-                      </div>
+                      </div> -->
                       <div class="ps-3">
-                        <h6>{{ historicals[historicals.length - 1].portfolio_value }}</h6>
+                        <h6>${{ historicals[historicals.length - 1].portfolio_value }}</h6>
+                        <button @click="reloadPage" v-on:click="updateHistorical()" class="btn btn-outline-primary">
+                          Update
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -54,9 +55,9 @@
                     </h5>
 
                     <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <!-- <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                         <i class="bi bi-percent"></i>
-                      </div>
+                      </div> -->
                       <div class="ps-3">
                         <div v-if="historicals[historicals.length - 1].day_gain_loss_percent > 0">
                           <h6>${{ historicals[historicals.length - 1].day_gain_loss }}</h6>
@@ -89,9 +90,9 @@
                     </h5>
 
                     <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <!-- <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                         <i class="bi bi-percent"></i>
-                      </div>
+                      </div> -->
                       <div class="ps-3">
                         <div v-if="historicals[historicals.length - 1].month_gain_loss_percent > 0">
                           <h6>${{ historicals[historicals.length - 1].month_gain_loss }}</h6>
